@@ -11,6 +11,7 @@ dependencies = [
     "chainlit>=2.5.5",
     "langchain-openai>=0.3.19",
     "langchain>=0.3.25",
+    "langfuse>=2.60.8",
 ]
 
 [project.scripts]
