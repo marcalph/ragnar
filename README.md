@@ -1,6 +1,6 @@
 measure popularity
 
-| Source              | Indicateur              | Idéal pour...               |
+| Source              | kpi                     | desc                        |
 | ------------------- | ----------------------- | --------------------------- |
 | Ifop,               | Popularité (baromètres) | Mesurer l’adhésion / rejet  |
 | Twitter, TikTok     | Buzz, viralité          | Savoir qui fait parler      |

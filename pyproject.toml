@@ -6,21 +6,23 @@ readme = "README.md"
 authors = [
     { name = "marcalph", email = "marcalph@protonmail.com" }
 ]
-requires-python = ">=3.12"
+requires-python = "==3.10.*"
 dependencies = [
     "bs4>=0.0.2",
     "chainlit>=2.5.5",
     "cohere>=5.15.0",
     "davia>=0.1.14",
     "fasttext-langdetect>=1.0.5",
-    "langchain-openai>=0.3.19",
-    "langchain>=0.3.25",
+    "frontmatter>=3.0.8",
     "langfuse>=2.60.8",
     "levenshtein>=0.27.1",
     "markdown-it-py>=3.0.0",
     "nltk>=3.9.1",
     "weave>=0.51.54",
     "weaviate>=0.1.2",
+    "bm25s>=0.2.13",
+    "pystemmer>=3.0.0",
+    "scikit-learn>=1.7.0",
 ]
 
 [project.scripts]
