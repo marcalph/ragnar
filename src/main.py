@@ -1,11 +1,15 @@
-from constants import setup, DATA_PATH
+from constants import setup, DATA_PATH, MODEL
 from loguru import logger
 from preprocessing.parse import main as parse
 from preprocessing.chunk import main as chunk
 from preprocessing.clean import main as clean
+from pipeline import SimpleRAGPipeline
 from retrieval.tfidf import TFIDFRetriever
+from generation.response import SimpleResponseGenerator
 
 
+
+from generation.prompts import INITIAL_PROMPT
 
 def list_docs(data_path):
     """list relevant md files from a directory"""
@@ -17,10 +21,9 @@ def list_docs(data_path):
 
 
 
-
 if __name__== "__main__":
-    docs_dir = DATA_PATH
-    docs_files = list_docs(docs_dir)
+    setup()
+    docs_files = list_docs(DATA_PATH)
     data = parse(docs_files)
     total_tokens = sum(map(lambda x: x["metadata"]["raw_tokens"], data))
     logger.info(f"#of tokens in dataset: {total_tokens}")
@@ -28,5 +31,11 @@ if __name__== "__main__":
     cleaned_data = clean(chunked_data)
     retriever = TFIDFRetriever()
     retriever.index_data(cleaned_data)
+    response_generator = SimpleResponseGenerator(model=MODEL, prompt=INITIAL_PROMPT)
+    rag = SimpleRAGPipeline(
+    retriever=retriever, response_generator=response_generator, top_k=5
+    )
     query = "How do I use W&B to log metrics in my training script?"
-    search_results = retriever.search(query)
+    response = rag.predict(query)
+    logger.warning(f"input query {query}")
+    logger.warning(f"generated answer {response}")

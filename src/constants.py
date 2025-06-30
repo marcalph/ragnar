@@ -12,7 +12,7 @@ TOKENIZERS = {
     "command-r": "https://storage.googleapis.com/cohere-public/tokenizers/command-r.json",
     "command-r-plus": "https://storage.googleapis.com/cohere-public/tokenizers/command-r-plus.json",
 }
-
+MODEL="command-r"
 
 
 
