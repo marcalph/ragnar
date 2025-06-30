@@ -23,16 +23,22 @@ dependencies = [
     "bm25s>=0.2.13",
     "pystemmer>=3.0.0",
     "scikit-learn>=1.7.0",
+    "python-dotenv>=1.1.1",
+    "loguru>=0.7.3",
+    "httpx>=0.28.1",
 ]
 
 [project.scripts]
 ragnar = "ragnar:main"
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+# [build-system]
+# requires = ["hatchling"]
+# build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
     "ipykernel>=6.29.5",
 ]
+
+[tool.hatch.build.wheel]
+sources = ["./src/ragnar"]
