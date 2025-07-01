@@ -1,4 +1,4 @@
-from constants import DATA_PATH
+from config import DATA_PATH
 from loguru import logger
 
 def main(documents):

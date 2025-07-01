@@ -1,4 +1,4 @@
-from constants import TOKENIZERS
+from config import TOKENIZERS
 import httpx
 
 def get_special_tokens_set(tokenizer_url=TOKENIZERS["command-r"]):

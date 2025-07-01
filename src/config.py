@@ -1,6 +1,8 @@
 from dotenv import load_dotenv
 import wandb
 from pathlib import Path
+from langfuse import get_client
+import os
 
 PROJECT="rag-course"
 DATA_PATH=Path("rag/data/wandb_docs")
@@ -15,10 +17,11 @@ TOKENIZERS = {
 MODEL="command-r"
 
 
-
 def setup():
     load_dotenv()
     wandb.login()
+    langfuse = get_client()
+    return langfuse
 
 
 

@@ -1,4 +1,4 @@
-from constants import CHUNK_SIZE, CHUNK_OVERLAP
+from config import CHUNK_SIZE, CHUNK_OVERLAP
 from loguru import logger
 from typing import Any
 import sys

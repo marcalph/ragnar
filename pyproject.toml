@@ -26,6 +26,8 @@ dependencies = [
     "python-dotenv>=1.1.1",
     "loguru>=0.7.3",
     "httpx>=0.28.1",
+    "opentelemetry-instrumentation-cohere>=0.40.14",
+    "openai>=1.93.0",
 ]
 
 [project.scripts]

@@ -1,4 +1,4 @@
-from constants import setup, DATA_PATH, MODEL
+from config import setup, DATA_PATH, MODEL
 from loguru import logger
 from preprocessing.parse import main as parse
 from preprocessing.chunk import main as chunk
@@ -6,6 +6,7 @@ from preprocessing.clean import main as clean
 from pipeline import SimpleRAGPipeline
 from retrieval.tfidf import TFIDFRetriever
 from generation.response import SimpleResponseGenerator
+from opentelemetry.instrumentation.cohere import CohereInstrumentor
 
 
 
@@ -22,7 +23,8 @@ def list_docs(data_path):
 
 
 if __name__== "__main__":
-    setup()
+    CohereInstrumentor().instrument()
+    langfuse = setup()
     docs_files = list_docs(DATA_PATH)
     data = parse(docs_files)
     total_tokens = sum(map(lambda x: x["metadata"]["raw_tokens"], data))
@@ -39,3 +41,4 @@ if __name__== "__main__":
     response = rag.predict(query)
     logger.warning(f"input query {query}")
     logger.warning(f"generated answer {response}")
+    langfuse.shutdown()

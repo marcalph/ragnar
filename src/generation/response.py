@@ -1,5 +1,8 @@
 import cohere
 import os
+import langfuse
+
+from langfuse import observe
 class SimpleResponseGenerator():
     model: str                                                                                                
     prompt: str                                                                                               
@@ -27,7 +30,7 @@ class SimpleResponseGenerator():
             for item in context                                                                               
         ]                                                                                                     
         return contexts                                                                                       
-                                                                                                              
+                                                                                                        
     def create_messages(self, query: str):                                                                    
         """                                                                                                   
         Create a list of messages for the chat model based on the query.                                      
@@ -43,7 +46,7 @@ class SimpleResponseGenerator():
             {"role": "user", "content": query},                                                               
         ]                                                                                                     
         return messages                                                                                       
-                                                                                                              
+
     def generate_response(self, query: str, context: list[dict[str, any]]) -> str:                            
         """                                                                                                   
         Generate a response from the chat model based on the query and context.                               
@@ -65,7 +68,7 @@ class SimpleResponseGenerator():
             documents=documents,                                                                              
         )                                                                                                     
         return response.message.content[0].text                                                               
-                                                                                                              
+
     def predict(self, query: str, context: list[dict[str, any]]):                                             
         """                                                                                                   
         Predict the response for the given query and context.                                                 
