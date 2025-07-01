@@ -1,6 +1,6 @@
 import cohere
 import os
-import langfuse
+
 
 from langfuse import observe
 class SimpleResponseGenerator():
@@ -13,8 +13,9 @@ class SimpleResponseGenerator():
             setattr(self, key, value)                                                                     
         self.client = cohere.ClientV2(                                                                        
             api_key=os.environ["COHERE_API_KEY"],                                                             
-        )                                                                                                     
-                                                                                                              
+        )
+                                                                                                  
+    @observe()
     def generate_context(self, context: list[dict[str, any]]) -> list[dict[str, any]]:                        
         """                                                                                                   
         Generate a list of contexts from the provided context list.                                           
@@ -47,6 +48,7 @@ class SimpleResponseGenerator():
         ]                                                                                                     
         return messages                                                                                       
 
+    @observe()
     def generate_response(self, query: str, context: list[dict[str, any]]) -> str:                            
         """                                                                                                   
         Generate a response from the chat model based on the query and context.                               
@@ -69,6 +71,7 @@ class SimpleResponseGenerator():
         )                                                                                                     
         return response.message.content[0].text                                                               
 
+    @observe()
     def predict(self, query: str, context: list[dict[str, any]]):                                             
         """                                                                                                   
         Predict the response for the given query and context.                                                 

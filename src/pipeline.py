@@ -2,6 +2,7 @@ from generation.response import SimpleResponseGenerator
 from retrieval.tfidf import TFIDFRetriever
 
 from dataclasses import dataclass
+from langfuse import observe
 
 @dataclass
 class SimpleRAGPipeline():                                                                         
@@ -16,7 +17,8 @@ class SimpleRAGPipeline():
     retriever: TFIDFRetriever|None = None                                                                             
     response_generator: SimpleResponseGenerator| None = None                                                                    
     top_k: int = 5                                                                                            
-                                                                                                              
+
+    @observe                                                                                  
     def predict(self, query: str):                                                                            
         """                                                                                                   
         Predicts a response based on the input query.                                                         

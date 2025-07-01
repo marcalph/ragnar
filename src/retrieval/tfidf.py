@@ -1,6 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.spatial.distance import cdist
-
+from langfuse import observe
 
 class TFIDFRetriever():                                                                                
     vectorizer: TfidfVectorizer = TfidfVectorizer()                                                           
@@ -18,7 +18,8 @@ class TFIDFRetriever():
         self.data = data                                                                                      
         docs = [doc["cleaned_content"] for doc in data]                                                       
         self.index = self.vectorizer.fit_transform(docs)                                                      
-                                                                                                              
+
+    @observe()                                                                                                              
     def search(self, query, k=5):                                                                             
         """                                                                                                   
         Searches the indexed data for the given query using cosine similarity.                                
@@ -46,6 +47,7 @@ class TFIDFRetriever():
             )                                                                                                 
         return output                                                                                         
                                                                                                               
+    @observe()
     def predict(self, query: str, k: int):                                                                    
         """                                                                                                   
         Predicts the top-k results for the given query.                                                       
