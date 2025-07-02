@@ -29,6 +29,6 @@ class SimpleRAGPipeline():
         Returns:                                                                                              
             The generated response based on the retrieved context.                                            
         """                                                                                                   
-        context = self.retriever.predict(query, self.top_k)                                                   
-        return self.response_generator.predict(query, context)
+        context = self.retriever.predict(query=query, k=self.top_k)                                                   
+        return self.response_generator.predict(query=query, context=context)
 

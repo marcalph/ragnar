@@ -1,4 +1,4 @@
-from utils.tokenize import get_special_tokens_set
+from preprocessing.tokenize import get_special_tokens_set
 from loguru import logger
 
 def main(chunked_data):

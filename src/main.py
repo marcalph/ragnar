@@ -38,7 +38,7 @@ if __name__== "__main__":
     retriever=retriever, response_generator=response_generator, top_k=5
     )
     query = "How do I use W&B to log metrics in my training script?"
-    response = rag.predict(query)
+    response = rag.predict(query=query)
     logger.warning(f"input query {query}")
     logger.warning(f"generated answer {response}")
     langfuse.shutdown()
