@@ -31,14 +31,15 @@ if __name__== "__main__":
     logger.info(f"#of tokens in dataset: {total_tokens}")
     chunked_data = chunk(data)
     cleaned_data = clean(chunked_data)
-    retriever = TFIDFRetriever()
-    retriever.index_data(cleaned_data)
-    response_generator = SimpleResponseGenerator(model=MODEL, prompt=INITIAL_PROMPT)
-    rag = SimpleRAGPipeline(
-    retriever=retriever, response_generator=response_generator, top_k=5
-    )
-    query = "How do I use W&B to log metrics in my training script?"
-    response = rag.predict(query=query)
-    logger.warning(f"input query {query}")
-    logger.warning(f"generated answer {response}")
-    langfuse.shutdown()
+    logger.warning(chunked_data[0].keys())
+    # retriever = TFIDFRetriever()
+    # retriever.index_data(cleaned_data)
+    # response_generator = SimpleResponseGenerator(model=MODEL, prompt=INITIAL_PROMPT)
+    # rag = SimpleRAGPipeline(
+    # retriever=retriever, response_generator=response_generator, top_k=5
+    # )
+    # query = "How do I use W&B to log metrics in my training script?"
+    # response = rag.predict(query=query)
+    # logger.warning(f"input query {query}")
+    # logger.warning(f"generated answer {response}")
+    # langfuse.shutdown()
